@@ -1,0 +1,134 @@
+$colours: (
+  background-primary: #ffffff,
+  background-secondary: rgba(0, 0, 0, 0.7),
+  text-primary: #333333,
+  text-secondary: #888888,
+  text-alternative: #ffffff,
+  accent-light: #5b8f5a,
+  accent: #2e4a3d,
+  accent-dark: #223429,
+  welcome-background: #f7f5ed,
+);
+
+$fonts: (
+  primary: (
+    "Overpass Mono",
+    monospace,
+  ),
+);
+
+$vertical-border-height: 2.8rem;
+$vertical-border-height-large: 4.8rem;
+$content-max-width: 140rem;
+
+@import "./_welcome.scss";
+@import "./_showcase.scss";
+@import "./_links.scss";
+
+*,
+*:before,
+*:after {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  max-width: 100%;
+  cursor: url("../images/Cursor.png") 5 5, auto;
+}
+
+:root {
+  --bg-color: map-get($colours, accent-dark);
+}
+
+body {
+  font-family: map-get($fonts, primary);
+  color: map-get($colours, text-primary);
+  transition: background-color 1s ease;
+  background-color: var(--bg-color);
+}
+
+html {
+  font-size: 62.5%;
+  scroll-behavior: smooth;
+}
+
+body {
+  font-size: 1.6rem;
+}
+
+a {
+  text-decoration: none;
+  color: inherit;
+}
+
+section {
+  height: 100vh;
+  min-height: 100vh;
+}
+
+#cursor {
+  width: 5rem;
+  height: 5rem;
+  border: 0.2rem solid rgba(85, 38, 32, 1);
+  border-radius: 50%;
+  position: fixed;
+  z-index: 99999;
+  transform: translate(-50%, -50%);
+  pointer-events: none;
+  transition: width 0.5s, height 0.5s;
+
+  &.large {
+    width: 8rem;
+    height: 8rem;
+  }
+}
+
+.noise::before {
+  background-image: url("../images/noise.gif");
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  content: "";
+  opacity: 0.03;
+  z-index: 1000;
+  pointer-events: none;
+}
+
+.scroll-arrow {
+  position: fixed;
+  filter: invert(53%) sepia(0%) saturate(1385%) hue-rotate(135deg)
+    brightness(101%) contrast(95%);
+  width: 5rem;
+  z-index: 1;
+  right: 0;
+  top: 50%;
+  transform: translateY(-50%) rotate(-90deg);
+}
+
+/* width */
+::-webkit-scrollbar {
+  width: 0.8rem;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+  background: #f7f5ed;
+  background: map-get($colours, accent);
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+  background: #f7f5ed;
+  background: map-get($colours, accent-dark);
+
+  &:hover {
+    background: darken(map-get($colours, accent-dark), 10%);
+  }
+}
+
+.content-container {
+  max-width: $content-max-width;
+  height: 100%;
+  width: 100%;
+}
